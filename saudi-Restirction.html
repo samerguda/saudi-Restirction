@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قيود السعودية  </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .dark-mode {
+            background-color: #333;
+            color: white;
+        }
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        .table-container {
+            margin-bottom: 20px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        table {
+            border-spacing: 0;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        .button-container {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .print-button { background-color: #4CAF50; color: white; }
+        .copy-button { background-color: #2196F3; color: white; }
+        .whatsapp-button { background-color: #25D366; color: white; }
+        .email-button { background-color: #E4405F; color: white; }
+        .dark-mode-button { background-color: #555; color: white; position: fixed; top: 10px; right: 10px; }
+        .dark-mode-button.small {
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+        .date-time {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="date-time">
+            تاريخ: <span id="currentDate"></span>
+        </div>
+
+        <div class="button-container">
+            <button class="print-button" onclick="window.print()">Print</button>
+            <button class="copy-button" onclick="copyContent()">Copy</button>
+            <button class="whatsapp-button" onclick="sendWhatsApp()">Send by WhatsApp</button>
+            <button class="email-button" onclick="sendEmail()">Send by Email</button>
+            <button class="dark-mode-button small" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+        </div>
+
+        <div class="table-container">
+            <h3>قيود السعودية</h3>
+            <table id="contentTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>قيود السعودية </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>      قيد تجديد الاقامة السنوية</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>            قيد تحكم الكفيل و المدير ونظام الكفالة      </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>     قيد  تاشيرة الخروج و العودة </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>قيدالعقد و عدم امكانية عمل شركة    </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>قيد   نظام الزواج من النساء    </td>
+                    </tr>
+                 
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('currentDate').innerText = new Date().toLocaleString();
+
+        function copyContent() {
+            let tableText = document.getElementById('contentTable').innerText;
+            navigator.clipboard.writeText(tableText).then(() => {
+                alert('Content copied to clipboard!');
+            });
+        }
+
+        function sendWhatsApp() {
+            let tableText = document.getElementById('contentTable').innerText;
+            let whatsappUrl = `https://wa.me/?text=${encodeURIComponent(tableText)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function sendEmail() {
+            let tableText = document.getElementById('contentTable').innerText;
+            let emailUrl = `mailto:?subject=Important Information&body=${encodeURIComponent(tableText)}`;
+            window.open(emailUrl, '_blank');
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+
+</body>
+</html>
